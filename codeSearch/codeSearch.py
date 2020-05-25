@@ -1,34 +1,25 @@
+import sys
+sys.path.append('./')
+
 import _pickle as pkl
-from utils import generateCodeMatrix,draw2DPicture,sampleSearchVector,searchCode
-import numpy as np 
+from cvRnn.utils import searchCode,printMetric,mixNegativePositive
+import numpy as np
+
 if __name__ == "__main__":
-    node_embedding_path = "dataset/embeddings.pkl"
-    with open(node_embedding_path, "rb") as f:
-        data = pkl.load(f)
-        vector = data[0]
 
-        vector_lookup = data[1]
+    with open('dataset/matrix/cvrnn/positive.pkl', "rb") as f:
+        dataset = pkl.load(f)
+        positive_vectors = dataset[0]
+        positive_labels = dataset[1]
 
-    log_dir = "log/train"
+    with open('dataset/matrix/tbcnn/negative.pkl', 'rb') as f:
+        dataset = pkl.load(f)
+        negative_vectors = dataset[0]
+        negative_labels = dataset[1]
 
-    with open('dataset/code_vector.pkl','rb') as f:
-        dataset=pkl.load(f)
-        code_db=dataset[0]
-        label_db=dataset[1]
+    query_vectors, query_labels, db_vectors, db_labels = mixNegativePositive(positive_vectors, positive_labels, negative_vectors, negative_labels)
 
-    
-    code_db=np.vstack(code_db)
-
-    query_vector,query_label=sampleSearchVector(code_db,label_db)
-
-    top1,top3,top5,top10=searchCode(query_vector,query_label,code_db,label_db)
-    
-    print(top1)
-    print(top3)
-    print(top5)
-    print(top10)
-
-    
-
+    predict_label=searchCode(query_vectors,query_labels,db_vectors,db_labels)
+    printMetric(query_labels,predict_label)
 
 
