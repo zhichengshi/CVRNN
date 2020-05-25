@@ -15,7 +15,7 @@ tbcnn模型直接运行tbcnn文件夹下的trainWithValidate文件即可
 (2)然后执行cvRnn/generateCodeMatrix.py生成代码向量，代码向量会放到dataset/matrix/cvrnn中，negative.pkl表示负样本向量，positive.pkl（代码向量数目为200）表示正样本向量  
 (3)然后在codeSearch/codeSearch.py中指定上面得到的negative.pkl以及positive.pkl的路径  
 
-**tbcnn相似代码搜索**
+**tbcnn相似代码搜索**  
 (1)首先使用代码分类任务训练模型，即执行tbcnn文件夹下的trainWithValidate.py  
 (2)然后执行tbcnn/generateCodeMatrix.py生成代码向量，代码向量会放到dataset/matrix/tbcnn中，negative.pkl表示负样本向量，positive.pkl（代码向量数目为200）表示正样本向量  
 (3)然后在codeSearch/codeSearch.py中指定上面得到的negative.pkl以及positive.pkl的路径 
