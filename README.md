@@ -3,8 +3,7 @@
 
 执行步骤：
 
-（1）git clone https://github.com/zhichengshi/CVRNN
-
+（1）git clone https://github.com/zhichengshi/CVRNN  
 （2）该项目所使用的数据已经被处理好存放在dataset文件夹中，链接：https://pan.baidu.com/s/1_9JbeNL0Ua4ffY0kpz8uzg 提取码：nda8，将dataset文件夹放到CVRNN文件夹下
 
 **代码分类任务：**
