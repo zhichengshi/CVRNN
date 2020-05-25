@@ -10,9 +10,6 @@ cvrnn模型直接运行cvRnn文件夹下的trainWithValidate.py文件即可。
 
 tbcnn模型直接运行tbcnn文件夹下的trainWithValidate文件即可
 
-#### 绘制leetcode代码向量的二维打印图
-运行cvRnn文件夹下的drawPicture.py即可
-
 #### 相似代码搜索
 #### cvrnn相似代码搜索
 (1)首先使用代码分类任务训练模型，即执行cvRnn文件夹下的trainWithValidate.py
@@ -27,4 +24,7 @@ tbcnn模型直接运行tbcnn文件夹下的trainWithValidate文件即可
 (2)然后执行tbcnn/generateCodeMatrix.py生成代码向量，代码向量会放到dataset/matrix/tbcnn中，negative.pkl表示负样本向量，positive.pkl（代码向量数目为200）表示正样本向量
 
 (3)然后在codeSearch/codeSearch.py中指定上面得到的negative.pkl以及positive.pkl的路径
+
+#### 绘制leetcode代码向量的二维打印图
+运行cvRnn文件夹下的drawPicture.py即可
 
