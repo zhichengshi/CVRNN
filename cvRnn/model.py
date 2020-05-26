@@ -327,11 +327,6 @@ def max_pooling(batch_subtree_embeddings):
 
         return tf.nn.tanh(tf.matmul(code_vector, weights) + biases)
     
-
-
-
-
-
 def softmax_layer(code_vector, code_vector_size, label_size):
     """Create a hidden feedforward layer."""
     with tf.name_scope("softmax_hidden_layer"):

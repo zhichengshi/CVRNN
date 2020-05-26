@@ -1,6 +1,2 @@
-model_checkpoint_path: "cvrnn.ckpt-30"
-all_model_checkpoint_paths: "cvrnn.ckpt-26"
-all_model_checkpoint_paths: "cvrnn.ckpt-27"
-all_model_checkpoint_paths: "cvrnn.ckpt-28"
-all_model_checkpoint_paths: "cvrnn.ckpt-29"
-all_model_checkpoint_paths: "cvrnn.ckpt-30"
+model_checkpoint_path: "cvrnn.ckpt-1"
+all_model_checkpoint_paths: "cvrnn.ckpt-1"

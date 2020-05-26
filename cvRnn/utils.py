@@ -33,40 +33,43 @@ def draw2DPicture(code_vectors, labels, draw_len):  # 使用kmeans聚类，并�
     for i in range(draw_len):
         x = embedd[i][0]
         y = embedd[i][1]
-        plt.text(x, y, labels[i])
+        plt.text(x, y, labels[i],fontsize=15)
     plt.show()
 
 
 def generateCodeMatrix(read_path, logdir, vector, vector_lookup, dump_path, sampleFunc):  # 构建代码向量矩阵
     # innitial the network
     nodes_node, children_node, statement_len_list, code_vector, logits = cmodel.init_net(embedding_size, label_size)
-    sess = tf.Session()
+    # sess = tf.Session()
+    # tf.reset_default_graph()
+    with tf.Session() as sess:
+        # load
+        with tf.name_scope('saver'):
+            saver = tf.train.Saver()
+            saver.restore(sess, 'log/cvrnn/cvrnn.ckpt-30')
 
-    # load
-    with tf.name_scope('saver'):
-        saver = tf.train.Saver()
-        saver.restore(sess, 'log/cvrnn/cvrnn.ckpt-30')
-        # saver.restore(sess, 'modelDatabase/cvrnn/conv1/cvrnn.ckpt-30')
+        # generate
+        code_vectors = []
+        labels = []
+        for nodes, children, statement_len, label_vector in sampleFunc(read_path, vector, vector_lookup):
+            try:
+                code_vector_element = sess.run([code_vector], feed_dict={
+                    nodes_node: nodes,
+                    children_node: children,
+                    statement_len_list: statement_len
+                })
+            except Exception:
+                continue
+            code_vectors.append(code_vector_element[0][0])
+            labels.append(np.argmax(label_vector) + 1)
 
-    # generate
-    code_vectors = []
-    labels = []
-    for nodes, children, statement_len, label_vector in sampleFunc(read_path, vector, vector_lookup):
-        try:
-            code_vector_element = sess.run([code_vector], feed_dict={
-                nodes_node: nodes,
-                children_node: children,
-                statement_len_list: statement_len
-            })
-        except Exception:
-            continue
-        code_vectors.append(code_vector_element[0][0])
-        labels.append(np.argmax(label_vector) + 1)
-
-    # dump
-    with open(dump_path, "wb") as f:
-        assert len(code_vectors) == len(labels)
-        pickle.dump((code_vectors, labels), f)
+        # dump
+        with open(dump_path, "wb") as f:
+            assert len(code_vectors) == len(labels)
+            pickle.dump((code_vectors, labels), f)
+        
+    tf.reset_default_graph() # 清空计算图，函数执行结束之后不会自动释放显存
+        
 
 
 

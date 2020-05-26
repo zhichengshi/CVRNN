@@ -7,7 +7,7 @@ import numpy as np
 
 if __name__ == "__main__":
 
-    with open('dataset/matrix/cvrnn/positive.pkl', "rb") as f:
+    with open('dataset/matrix/tbcnn/positive.pkl', "rb") as f:
         dataset = pkl.load(f)
         positive_vectors = dataset[0]
         positive_labels = dataset[1]
