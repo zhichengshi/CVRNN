@@ -23,3 +23,5 @@ tbcnn模型直接运行tbcnn文件夹下的trainWithValidate文件即可
 **绘制leetcode代码向量的二维打印图**  
 运行cvRnn文件夹下的drawPicture.py即可
 
+该项目论文已经在知网上发表：
+[1]史志成,周宇.代码特征自动提取方法[J/OL].计算机科学与探索:1-17[2021-02-07].http://kns.cnki.net/kcms/detail/11.5602.TP.20200817.1301.012.html.
